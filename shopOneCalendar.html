@@ -5,11 +5,14 @@
     <title>Snopek's Flavor of the Day Calendar</title>
     <link rel="stylesheet" href="stylesheet.css">
     <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
     <script src="javascript.js"></script>
-    <script src="javascript.js"></script>
+    <script>
+        component.initialize.init();
+    </script>
+
     <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|Hepta+Slab&display=swap" rel="stylesheet">
 
 </head>
@@ -34,17 +37,20 @@
         <tr>
             <td>Mint Chocolate Chip</td>
             <td>09/01/2019</td>
-            <td>1.99</td>
+            <td><span id="mintPrice">1.99</span></td>
+            <td><button id="updateMintPrice" class="flavorPriceButton" type="button">Update Price</button></td>
         </tr>
         <tr>
             <td>Strawberry</td>
             <td>09/02/2019</td>
-            <td>2.99</td>
+            <td><span id="strawberryPrice">2.99</span></td>
+            <td><button id="updateStrawberryPrice" class="flavorPriceButton" type="button">Update Price</button></td>
         </tr>
         <tr>
             <td>Moose Tracks</td>
             <td>09/03/2019</td>
-            <td>1.99</td>
+            <td><span id="moosePrice">1.99</span></td>
+            <td><button id="updateMoosePrice" class="flavorPriceButton" type="button">Update Price</button></td>
         </tr>
     </table>
 
@@ -58,7 +64,7 @@
         First name:<input type="text" name="fname" id="fname"><br>
         Last name: <input type="text" name="lname" id="lname"><br>
         E-mail: <input type="email" name="email" id="email"required><br>
-        <input class="submit" type="submit">
+        <input id="submit" class="submit" type="submit">
     </form>
 
 </footer>

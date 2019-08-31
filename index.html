@@ -5,10 +5,13 @@
     <title>Flavor of the Day!</title>
     <link rel="stylesheet" href="stylesheet.css">
     <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
     <script src="javascript.js"></script>
+    <script>
+        component.initialize.init();
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|Hepta+Slab&display=swap" rel="stylesheet">
 
 </head>
@@ -38,7 +41,7 @@
             First name:<input type="text" name="fname" id="fname"><br>
             Last name: <input type="text" name="lname" id="lname"><br>
             E-mail: <input type="email" name="email" id="email"required><br>
-            <input class="submit" type="submit">
+            <input id="submit" class="submit" type="submit">
         </form>
 
     </footer>
