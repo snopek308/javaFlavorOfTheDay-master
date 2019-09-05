@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/javaFlavorOfTheDay-master.iml" filepath="$PROJECT_DIR$/.idea/javaFlavorOfTheDay-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaFlavorOfTheDay.iml" filepath="$PROJECT_DIR$/JavaFlavorOfTheDay.iml" />
     </modules>
   </component>
 </project>
