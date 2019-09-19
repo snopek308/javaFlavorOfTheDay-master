@@ -32,14 +32,13 @@ public class ListServlet extends HttpServlet {
 
             stmt = conn.createStatement();
 
-            rset = stmt.executeQuery("SELECT pet_id, nm FROM pet");
+            rset = stmt.executeQuery("SELECT last_name FROM FLAVOR_NEWSLETTER");
 
             StringBuilder html = new StringBuilder("<html><body>");
 
             while (rset.next()) {
-                int id = rset.getInt("pet_id");
-                String nm = rset.getString(2);
-                html.append("<p>").append(id).append(",").append(nm).append("</p>");
+                int id = rset.getInt("last_name");
+                html.append("<p>").append(id).append("</p>");
             }
 
             html.append("</body></html>");

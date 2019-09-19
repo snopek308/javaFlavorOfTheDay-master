@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet(name = "PetNameSearch", urlPatterns = "/petNameSearch")
+@WebServlet(name = "emailNameSearch", urlPatterns = "/emailNameSearch")
 public class emailNameSearch extends HttpServlet {
     private final String DRIVER_NAME = "jdbc:derby:";
-    private final String DATABASE_PATH = "/WEB-INF/lib/dbdemo";
+    private final String DATABASE_PATH = "/WEB-INF/lib/flavor";
     private final String USERNAME = "abby";
-    private final String PASSWORD = "aibby";
+    private final String PASSWORD = "abby";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -23,7 +23,7 @@ public class emailNameSearch extends HttpServlet {
         ResultSet rset = null;
 
         try {
-            String searchTerm = request.getParameter("petName");
+            String searchTerm = request.getParameter("searchTerm");
 
             // Load the driver
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
@@ -31,12 +31,10 @@ public class emailNameSearch extends HttpServlet {
             // Find the absolute path of the database folder
             String absPath = getServletContext().getRealPath(DATABASE_PATH);
 
-            StringBuilder sql = new StringBuilder("SELECT pet.nm, food.nm");
-            sql.append(" FROM pet_food, pet, food");
-            sql.append(" WHERE pet_food.pet_id = pet.pet_id");
-            sql.append(" AND pet_food.food_id = food.food_id");
-            sql.append(" AND pet.nm = ?");
-            sql.append(" ORDER BY pet.nm"); // Don't end SQL with semicolon!
+            StringBuilder sql = new StringBuilder("SELECT last_name, first_name");
+            sql.append(" FROM flavor_newsletter");
+            sql.append(" WHERE email = ?");
+            sql.append(" ORDER BY last_name"); // Don't end SQL with semicolon!
 
             // Create a connection
             conn = DriverManager.getConnection(DRIVER_NAME + absPath, USERNAME, PASSWORD);
@@ -56,10 +54,10 @@ public class emailNameSearch extends HttpServlet {
             // Loop while the result set has more rows
             while (rset.next()) {
                 // Get the first string (the pet name) from each record
-                String petName = rset.getString(1);
-                String foodName = rset.getString(2);
+                String last_name = rset.getString(1);
+                String first_name = rset.getString(2);
                 // Append it as a list item
-                output.append("<li>").append(petName + ": " + foodName).append("</li>");
+                output.append("<li>").append(last_name + ": " + first_name).append("</li>");
             }
             // Close all those opening tags
             output.append("</ul></body></html>");
