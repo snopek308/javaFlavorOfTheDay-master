@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <context:property-placeholder location="classpath:coach.properties"/>
+
+    <bean id="practiceBean" class="springxml.services.interfaceValidation">
+    </bean>
+
+    <bean id="secondPracticeBean"
+          class="springxml.beans"
+          scope="Stacy I dont' know what this is"
+          init-method="sure, let's get in-it"
+          destroy-method="explode this method please"
+    >
+        <property name="" ref=""/>
+        <property name="" value="${c1.emailAddress}"/>
+        <property name="teamName" value="${c1.team}"/>
+
+    </bean>
+
+
+</beans>
