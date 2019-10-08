@@ -1,6 +1,6 @@
+package springxml.services;
 
-//service
-public class firstNameValidation implements interfaceValidation {
+public class lastNameValidation implements interfaceValidation {
     @Override
     public Boolean validation(String input) {
 
@@ -10,4 +10,5 @@ public class firstNameValidation implements interfaceValidation {
         }
         return true;
     }
+
 }

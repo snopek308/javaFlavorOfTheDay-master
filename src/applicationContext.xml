@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:coach.properties"/>
+    <context:property-placeholder location="classpath:newsletter.properties"/>
 
-    <bean id="practiceBean" class="springxml.services.interfaceValidation">
-    </bean>
+    <bean class="springxml.services.emailValidation" id="emailValidation"></bean>
+    <bean class="springxml.services.firstNameValidation" id="firstNameValidation"></bean>
+    <bean class="springxml.services.lastNameValidation" id="lastNameValidation"></bean>
 
-    <bean id="secondPracticeBean"
-          class="springxml.beans"
-          scope="Stacy I dont' know what this is"
-          init-method="sure, let's get in-it"
-          destroy-method="explode this method please"
-    >
-        <property name="" ref=""/>
-        <property name="" value="${c1.emailAddress}"/>
-        <property name="teamName" value="${c1.team}"/>
+    <bean class="springxml.beans.user" id="user">
+        <constructor-arg ref="emailValidation"></constructor-arg>
+        <property name="email" value="${n1.email}"></property>
+        <property name="firstName" value="${n1.firstName}"></property>
+        <property name="lastName" value="${n1.lastName}"></property>
 
     </bean>
-
 
 </beans>

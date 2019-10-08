@@ -1,8 +1,9 @@
+package springxml.services;
 
 //service
 public class firstNameValidation implements interfaceValidation {
     @Override
-    public Boolean validation() {
+    public Boolean validation(String input) {
 
         if(input == null)
         {

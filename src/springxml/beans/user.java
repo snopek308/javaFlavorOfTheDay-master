@@ -1,8 +1,14 @@
-import firstNameValidation.java
-import lastNameValidation.java
-import emailValidation.java
+package springxml.beans;
+
+import springxml.services.emailValidation;
+import springxml.services.interfaceValidation;
 
 public class user{
+
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String email;
 
     public int getID(){
         return id;
@@ -37,7 +43,10 @@ public class user{
     }
 
     public user(){
-        this(1, "Abby", "Snopek", "asnopek@wctc.edu")
+        this.lastName=lastName;
+        this.firstName=firstName;
+        this.email=email;
+        this.id=id;
     }
 
     private interfaceValidation validation;
@@ -48,16 +57,16 @@ public class user{
 
     public Boolean isFirstNameValid()
     {
-        return validation.validation(firstName)
+        return validation.validation(firstName);
     }
 
     public Boolean isLastNameValid()
     {
-        return validation.validation(lastName)
+        return validation.validation(lastName);
     }
 
     public Boolean isEmailValid(){
-        return validation.validation(email)
+        return validation.validation(email);
     }
 
 
