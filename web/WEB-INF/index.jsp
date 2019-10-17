@@ -1,8 +1,16 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: abby-
+  Date: 10/16/2019
+  Time: 7:53 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Snopek's Flavor of the Day Calendar</title>
+    <title>Flavor of the Day!</title>
     <link rel="stylesheet" href="WEB-INF/resources/css/stylesheet.css">
     <script
             src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -12,7 +20,6 @@
     <script>
         component.initialize.init();
     </script>
-
     <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|Hepta+Slab&display=swap" rel="stylesheet">
 
 </head>
@@ -21,43 +28,21 @@
     <h1>Flavor of the Day</h1>
     <div class="tabs">
         <ul class="tabNavigation">
-            <li><a href="home.html" class="navTab">Homepage</a></li>
+            <li><a href="index.html" class="navTab">Homepage</a></li>
             <li><a href="shopOne.html" class="navTab">Snopek's Ice Cream Shop</a></li>
             <li><a href="shopOneCalendar.html" class="navTab">Snopek's Ice Cream Calendar</a></li>
             <li><a href="summaryPage.html" class="navTab">Summary Page</a></li>
         </ul>
     </div>
+    <div class="main">
+        <h3>Welcome ice cream lovers!</h3>
+        <p>If you love ice cream, you've come to the frozen place. </p>
 
-    <table>
-        <tr>
-            <th>Ice Cream Flavor</th>
-            <th>Flavor of the Day</th>
-            <th>Price of Ice Cream</th>
-        </tr>
-        <tr>
-            <td>Mint Chocolate Chip</td>
-            <td>09/01/2019</td>
-            <td><span id="mintPrice">1.99</span></td>
-            <td><button id="updateMintPrice" class="flavorPriceButton" type="button">Update Price</button></td>
-        </tr>
-        <tr>
-            <td>Strawberry</td>
-            <td>09/02/2019</td>
-            <td><span id="strawberryPrice">2.99</span></td>
-            <td><button id="updateStrawberryPrice" class="flavorPriceButton" type="button">Update Price</button></td>
-        </tr>
-        <tr>
-            <td>Moose Tracks</td>
-            <td>09/03/2019</td>
-            <td><span id="moosePrice">1.99</span></td>
-            <td><button id="updateMoosePrice" class="flavorPriceButton" type="button">Update Price</button></td>
-        </tr>
-    </table>
+        <p>Come explore our website. See what we're churning.</p>
 
+    </div>
 
 </div>
-
-</body>
 <footer>
     <p>Please join our email address for a subscription to our newsletter!</p>
     <form>
@@ -68,4 +53,5 @@
     </form>
 
 </footer>
+</body>
 </html>
