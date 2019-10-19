@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:newsletter.properties"/>
+
+    <bean class="springxml.services.emailValidation" id="emailValidation"></bean>
+    <bean class="springxml.services.firstNameValidation" id="firstNameValidation"></bean>
+    <bean class="springxml.services.lastNameValidation" id="lastNameValidation"></bean>
+
+    <bean class="springxml.beans.user" id="user">
+        <constructor-arg ref="firstNameValidation"></constructor-arg>
+        <property name="email" value="${n1.email}"></property>
+        <property name="firstName" value="${n1.firstName}"></property>
+        <property name="lastName" value="${n1.lastName}"></property>
+
+
+    </bean>
+</beans>
