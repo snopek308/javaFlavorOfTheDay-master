@@ -1,14 +1,16 @@
 package service;
 
 import hibernate.entity.Users;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface userService {
 
         List<Users> getUsers();
 
-        void saveUser(Users theUsers);
+        void createUser(Users theUsers);
 
         Users getUser(int userID);
 

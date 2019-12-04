@@ -1,27 +1,26 @@
 package service;
 
 
-import DAO.UserDAO;
 import hibernate.entity.Users;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
-@Service
+@Repository
 public class userServiceImpl implements userService {
 
     @Autowired
-    private UserDAO userDAO;
+    private SessionFactory factory;
 
     @Override
     public List<Users> getUsers() {
-        return userDAO.getUsers();
+        return null;
     }
 
     @Override
-    public void saveUser(Users theUsers) {
+    public void createUser(Users theUsers) {
 
     }
 
@@ -39,4 +38,5 @@ public class userServiceImpl implements userService {
     public List<Users> getUserID(int UserID) {
         return null;
     }
+
 }

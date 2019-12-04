@@ -31,31 +31,50 @@
     </div>
 </div>
 
-<form:form action="save" modelAttribute="Users">
-    <form:hidden path="userID" value="${Users.userID}"/>
+<div id="container">
+
+    <div id="content">
+
+        <button class="add-button"
+                onclick="window.location.href='showAddDonutForm'; return false;">Add Subscriber</button>
+
+        <form:form action="search" method="GET">
+            <input type="search" name="searchTerm">
+            <input type="submit" value="Search" class="add-button">
+        </form:form>
+
+        <table>
+            <tr>
+                <th></th>
+                <th>Newsletter</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>User Email</th>
+                <th>Action</th>
+            </tr>
+            <c:forEach var="tempuser" items="${donuts}">
+                <c:url var="updateLink" value="/users/showUpdateUsersForm">
+                    <c:param name="userID" value="${tempuser.userID}"/>
+                </c:url>
+                <c:url var="deleteLink" value="/donut/delete">
+                    <c:param name="userID" value="${tempDonut.userID}"/>
+                </c:url>
+                <tr>
+                    <td>${tempuser.firstName}</td>
+                    <td>${tempuser.lastName}</td>
+                    <td>${tempuser.userEmail}</td>
+                    <td>
+                        <a href="${updateLink}">Update</a>
+                        &nbsp;|&nbsp;
+                        <a href="${deleteLink}"
+                           onclick="if (!confirm('Are you sure?')) return false">Delete</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</div>
 
 
-    <table>
-        <tr>
-            <td><label>First Name</label></td>
-            <td><form:input path="firstName"/>
-                <form:errors path="firstName" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td><label>Last Name</label></td>
-            <td><form:input path="lastName"/>
-                <form:errors path="lastName" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td><label>Email</label></td>
-            <td><form:input path="userEmail"/>
-                <form:errors path="userEmail" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Save" class="save"></td>
-        </tr>
-    </table>
-</form:form>
 </body>
 </html>
