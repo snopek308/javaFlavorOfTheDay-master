@@ -1,6 +1,6 @@
 package springxml.services;
 
-//service
+//hibernate.service
 public class firstNameValidation implements interfaceValidation {
     @Override
     public Boolean validation(String input) {

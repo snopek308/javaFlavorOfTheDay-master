@@ -10,7 +10,9 @@ import java.util.List;
 
 public class HibernateApp {
 
+    //builds the factory for the hibernate app
     private SessionFactory factory;
+
 
     public HibernateApp() {
         factory = new Configuration().configure("hibernate.cfg.xml")
@@ -18,10 +20,12 @@ public class HibernateApp {
                 .buildSessionFactory();
     }
 
+    //closes the factory
     public void close() {
         factory.close();
     }
 
+    //sets up deleting the user
     private void deleteUser(int userID) {
         Session session = factory.getCurrentSession();
 
@@ -34,6 +38,7 @@ public class HibernateApp {
         session.getTransaction().commit();
     }
 
+    //updating the user account
     private void updateUser(int userID) {
         Session session = factory.getCurrentSession();
 
@@ -48,6 +53,7 @@ public class HibernateApp {
         session.getTransaction().commit();
     }
 
+    //reads the users entered
     private void readUser(int userID) {
         Session session = factory.getCurrentSession();
 
@@ -62,7 +68,7 @@ public class HibernateApp {
     }
 
 
-
+    //creates the new users
     private int createUser() {
         Session session = factory.getCurrentSession();
 

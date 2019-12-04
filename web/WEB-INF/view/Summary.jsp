@@ -1,80 +1,74 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: abby-
-  Date: 12/2/2019
-  Time: 7:55 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Flavor of the Day!</title>
-    <link rel="stylesheet" href="WEB-INF/resources/css/stylesheet.css">
-    <script
-            src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-            crossorigin="anonymous"></script>
-    <script src="WEB-INF/resources/js/javascript.js"></script>
-    <script>
-        component.initialize.init();
-    </script>
-    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|Hepta+Slab&display=swap" rel="stylesheet">
-
+    <title>Summary Page</title>
+    <link type="text/css" rel="stylesheet" href="${contextPath}/resources/css/style.css">
 </head>
 <body>
-<div id="wrapper">
-    <div id="header">
-        <h2>New Donut</h2>
-    </div>
-</div>
+
+<%@include file="/WEB-INF/view/includes/header.jsp"%>
 
 <div id="container">
 
     <div id="content">
 
-        <button class="add-button"
-                onclick="window.location.href='showAddDonutForm'; return false;">Add Subscriber</button>
+        <!-- add user button -->
 
+        <button class="add-button"
+                onclick="window.location.href='showAddUserForm'; return false;">Add User Information
+        </button>
+
+        <!-- search form -->
         <form:form action="search" method="GET">
-            <input type="search" name="searchTerm">
-            <input type="submit" value="Search" class="add-button">
+            Search Users by userID <input type="search" name="searchTerm"/>
+            <input type="submit" value="Search" class="add-button"/>
         </form:form>
+
+        <!-- user list table -->
 
         <table>
             <tr>
                 <th></th>
-                <th>Newsletter</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>User Email</th>
                 <th>Action</th>
             </tr>
-            <c:forEach var="tempuser" items="${donuts}">
-                <c:url var="updateLink" value="/users/showUpdateUsersForm">
-                    <c:param name="userID" value="${tempuser.userID}"/>
+            <c:forEach var="tempUser" items="${users}">
+
+                <!-- construct an "update" link with donut id -->
+                <!-- c:url is same as JSP's response.encodeURL() -->
+                <c:url var="updateLink" value="/Users/showUpdateUsersForm">
+                    <c:param name="userID" value="${tempUser.userID}"/>
                 </c:url>
-                <c:url var="deleteLink" value="/donut/delete">
-                    <c:param name="userID" value="${tempDonut.userID}"/>
+
+                <!-- construct a "delete" link with donut id -->
+                <c:url var="deleteLink" value="/Users/delete">
+                    <c:param name="userID" value="${tempUser.userID}"/>
                 </c:url>
+
                 <tr>
-                    <td>${tempuser.firstName}</td>
-                    <td>${tempuser.lastName}</td>
-                    <td>${tempuser.userEmail}</td>
+                    <td>${tempUser.firstName}</td>
+                    <td>${tempUser.lastName}</td>
+                    <td>${tempUser.userEmail}</td>
                     <td>
+                        <!-- display the update link -->
                         <a href="${updateLink}">Update</a>
-                        &nbsp;|&nbsp;
-                        <a href="${deleteLink}"
-                           onclick="if (!confirm('Are you sure?')) return false">Delete</a>
+                        |
+                        <!-- display the delete link -->
+                        <a href="${deleteLink}" onclick="if (!confirm('Are you sure?')) return false">Delete</a>
                     </td>
+
                 </tr>
             </c:forEach>
         </table>
-    </div>
-</div>
 
+    </div>
+
+</div>
 
 </body>
 </html>

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController {
+    @RequestMapping(path = "/")
+    public String showHomePage() {return "index";}
+
     @RequestMapping("/errors")
     public String showErrorPage(HttpServletRequest request,
                                 Model theModel) {

@@ -7,14 +7,15 @@ import java.util.List;
 
 @Service
 public interface UserDAO {
-    List<Users> getUsers();
 
-    void createUsers (Users user);
+    public void createUsers (Users user);
 
     Users getUsers(int userID);
 
-    void deleteUser(int userID);
+    public void deleteUser(int userID);
 
     List<Users> getUsersByName(String theSearchTerm);
+
+    List<Users> getUserList();
 }
 

@@ -16,23 +16,29 @@ public class UserDAOImpl implements UserDAO{
     private SessionFactory factory;
 
     @Override
-    public List<Users> getUsers() {
+    public List<Users> getUserList() {
+        //get current hibernate session
         Session session = factory.getCurrentSession();
 
+        //get list of users from query
         List<Users> list = session.createQuery("from Users", Users.class).getResultList();
 
+        //return results
         return list;
     }
 
     @Override
-    public void createUsers(Users users) {
+    public void createUsers(Users user) {
+        //get current hibernate session
         Session session = factory.getCurrentSession();
 
-        session.saveOrUpdate(users);
+        //save/update the user
+        session.saveOrUpdate(user);
     }
 
     @Override
     public Users getUsers(int userID) {
+        //get current hibernate session
         Session session = factory.getCurrentSession();
 
         return session.get(Users.class, userID);
@@ -41,20 +47,26 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void deleteUser(int userID) {
+        //get current hibernate session
         Session session = factory.getCurrentSession();
 
+        //delete object using primary key
         Query query = session.createQuery("delete from Users where id = :doomedUserID");
 
+        //set parameter value
         query.setParameter("doomedUserID", userID);
 
+        //perform the delete
         query.executeUpdate();
     }
 
     @Override
     public List<Users> getUsersByName(String theSearchTerm) {
+        //get current hibernate session
         Session session = factory.getCurrentSession();
 
-        Query<Users> query = session.createQuery("from Users where lower(lastName) like :searchTerm");
+        //add wildcards and make search term lowercase for case insensitivity
+        Query<Users> query = session.createQuery("from Users where lower(userID) like :searchTerm");
 
         theSearchTerm = "%" + theSearchTerm.toLowerCase() + "%";
 

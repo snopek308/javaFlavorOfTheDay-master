@@ -4,16 +4,18 @@ import hibernate.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import service.userService;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import hibernate.service.userService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/Users")
 public class UserController {
+    //inject the user service
     @Autowired
     private userService us;
 
@@ -29,27 +31,53 @@ public class UserController {
 
     @GetMapping("/delete")
     public String deleteUser(@RequestParam("userID") int theId) {
+
+        //Delete the user
         us.deleteUser(theId);
 
-        return "redirect:/index/Summary";
+        return "redirect:/Users/list";
     }
 
     @RequestMapping("/list")
-    public String listDonuts(Model theModel) {
-        List<Users> donutList = us.getUsers();
+    public String userList(Model theModel) {
+        //get users from service
+        List<Users> userList = us.getUserList();
 
-        theModel.addAttribute("donuts", donutList);
+        //add the list of users to the model
+        theModel.addAttribute("users", userList);
 
-        return "pm/list-donuts";
+        //return the name of the view
+        return "Summary";
     }
 
     @GetMapping("/showAddUserForm")
-    public String showAddDonutForm(Model theModel) {
+    public String showAddUserForm(Model theModel) {
         Users newUser = new Users();
 
-        theModel.addAttribute("aUser", newUser);
+        theModel.addAttribute("user", newUser);
 
-        return "/index";
+        return "user-form";
+    }
+
+    @RequestMapping("/showUpdateUsersForm")
+    public String showUpdateUsersForm(@RequestParam("userID") int userID, Model theModel){
+        // Get user from the database
+        Users theUser = us.getUser(userID);
+
+        // Set user as a model attribute to pre-populate the form
+        theModel.addAttribute("user", theUser);
+
+        // Return the view
+        return "Summary";
+    }
+
+
+    @PostMapping("/save")
+    public String createUser(@ModelAttribute(name="user") Users newUser) {
+
+
+        us.createUser(newUser);
+        return "redirect:/Users/list";
     }
 
 
